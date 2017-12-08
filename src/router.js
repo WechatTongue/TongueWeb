@@ -7,12 +7,13 @@ function RouterConfig({ history }) {
   return (
     <Router history={history}>
       <Switch>
-        <Route path="/" component={WorkOrderListPage} />
+        <Route path="/" exact component={WorkOrderListPage} />
         <Route path="/workOrderList" component={WorkOrderListPage} />
         <Route path="/workOrder" component={WorkOrderPage} />
       </Switch>
     </Router>
   );
 }
+
 
 export default RouterConfig;
