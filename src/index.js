@@ -8,7 +8,11 @@ const app = dva();
 // app.use({});
 
 // 3. Model
-// app.model(require('./models/example'));
+const reqContext = require.context('./models', true, /^\.\/.*\.js$/);
+reqContext.keys().forEach((key) => {
+  app.model(reqContext(key));
+  app.model(require("./models/workOrder"));
+});
 
 // 4. Router
 app.router(require('./router'));
