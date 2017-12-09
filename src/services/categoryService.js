@@ -9,6 +9,10 @@ export async function deleteCategory(params){
   return {}
 }
 
+export async function updateCategory(params){
+  return {}
+}
+
 export async function queryCategory(){
   return {
     ok:true,
@@ -57,8 +61,4 @@ export async function queryCategory(){
     ]
   }
   //return request(`${host}/api/category`);
-}
-
-export async function updateCategory(params){
-
 }

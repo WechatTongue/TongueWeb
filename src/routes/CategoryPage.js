@@ -165,10 +165,12 @@ class CategoryPage extends React.Component {
     });
   }
 
-  showUpdateModal = () => {
+  showUpdateModal = (e) => {
     this.setState({
       UpdateModalvisible: true,
+      updateId:e.target.getAttribute("value")
     });
+    console.log(e.target.getAttribute("value"));
   }
 
   showDeleteModal = () => {
@@ -217,16 +219,24 @@ class CategoryPage extends React.Component {
 
   handleUpdateModalCreate = () => {
     const form = this.form;
+    const that = this;
     form.validateFields((err, values) => {
       if (err) {
         return;
       }
-
-      console.log('Received values of form: ', values);
+      let { dispatch } =that.props;
+      dispatch({
+        type:'category/update',
+        payload:{
+          id:that.state.updateId,
+          name:values.name
+        }
+      });
       form.resetFields();
       this.setState({ UpdateModalvisible: false });
     });
   }
+
 
   renderCategory(categories){
     let divs = [];
@@ -256,7 +266,7 @@ class CategoryPage extends React.Component {
         child.push(
           <p key={data.id}>
             {data.nodeName}
-            <Button onClick={that.showUpdateModal}>修改分类</Button>
+            <Button value={data.id} name={data.nodeName} onClick={that.showUpdateModal.bind(this)}>修改分类</Button>
             <Button value={data.id} name={data.nodeName} onClick={showDeleteConfirm.bind(this)}>删除分类</Button>
           </p>
         )
