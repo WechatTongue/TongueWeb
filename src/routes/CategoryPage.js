@@ -3,7 +3,7 @@ import { connect } from 'dva';
 
 class CategoryPage extends React.Component {
   render(){
-    const { categories } = this.props.categories;
+    const { categories } = this.props.category;
     return (
       <div>
         {this.renderCategory(categories)}
@@ -13,17 +13,18 @@ class CategoryPage extends React.Component {
 
   renderCategory(categories){
     let divs = [];
+    let that = this;
     categories.forEach(function (data) {
       divs.push(
         <div key={data.id}>
           <p>
             {data.nodeName}
           </p>
-          {this.renderChildren(data.children)}
+          {that.renderChildren(data.children)}
         </div>
       );
-      return divs;
     });
+    return divs;
   }
 
     renderChildren(children){

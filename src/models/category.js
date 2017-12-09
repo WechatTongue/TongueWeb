@@ -10,7 +10,7 @@ export default {
         nodeName:"寒",
         children:[{
           id:11,
-          nodeName:"表寒",
+          nodeName:"表寒"
         },{
           id:12,
           nodeName:"痰湿"
@@ -20,7 +20,7 @@ export default {
         nodeName:"热",
         children:[{
           id:21,
-          nodeName:"湿热",
+          nodeName:"湿热"
         },{
           id:22,
           nodeName:"内火"
@@ -30,7 +30,7 @@ export default {
         nodeName:"虚",
         children:[{
           id:31,
-          nodeName:"气虚",
+          nodeName:"气虚"
         },{
           id:32,
           nodeName:"血虚"
@@ -40,7 +40,7 @@ export default {
         nodeName:"实",
         children:[{
           id:41,
-          nodeName:"血瘀",
+          nodeName:"血瘀"
         },{
           id:42,
           nodeName:"食滞"

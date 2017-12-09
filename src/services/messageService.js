@@ -43,6 +43,14 @@ export async function queryWorkOrder(params){
     photos:[{
       id:12345,
       url:"http://img1.gtimg.com/dajia/pics/hv1/148/163/2231/145112488.jpg",
+      category:{
+        id:1,
+        nodeName:"寒",
+        children:{
+          id:11,
+          nodeName:"表寒"
+        }
+      }
     },{
       id:12346,
       url:"http://www.ufengtech.xyz/tongue/1.jpeg"
@@ -55,14 +63,14 @@ export async function queryWorkOrder(params){
         sequenceId:2,
         description:"你这是表寒",
         type:"diagnostic",
-        time:"2017-12-7 08:30",
+        time:"2017-12-7 08:30"
       },{
         workOrderId:1,
         inquiryId:1,
         sequenceId:3,
         description:"医生我听不懂",
         type:"inquiry",
-        time:"2017-12-7 09:30",
+        time:"2017-12-7 09:30"
       },{
         workOrderId:1,
         patientId:1,
@@ -76,10 +84,7 @@ export async function queryWorkOrder(params){
         }],
         time:"2017-12-6 15:30"
       }
-    ],
-    category:{
-      
-    }
+    ]
   }
 
  // return request(`${host}/message/workorder/${params.id}`);
