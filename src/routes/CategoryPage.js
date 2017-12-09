@@ -1,14 +1,190 @@
 import React from 'react';
 import { connect } from 'dva';
+import { Modal,Button } from 'antd';
+import { Form, Input } from 'antd';
+const FormItem = Form.Item;
+
+const Create1Form = Form.create()(
+  (props) => {
+    const { visible, onCancel, onCreate, form } = props;
+    const { getFieldDecorator } = form;
+    return (
+      <Modal
+        visible={visible}
+        title="新增分类"
+        okText="Create"
+        onCancel={onCancel}
+        onOk={onCreate}
+      >
+        <Form layout="vertical">
+          <FormItem label="类名">
+            {getFieldDecorator('name', {
+              rules: [{ required: true, message: 'Please input the title of collection!' }],
+            })(
+              <Input />
+            )}
+          </FormItem>
+        </Form>
+      </Modal>
+    );
+  }
+);
+
+const Create2Form = Form.create()(
+  (props) => {
+    const { visible, onCancel, onCreate, form } = props;
+    const { getFieldDecorator } = form;
+    return (
+      <Modal
+        visible={visible}
+        title="新增分类"
+        okText="Create"
+        onCancel={onCancel}
+        onOk={onCreate}
+      >
+        <Form layout="vertical">
+          <FormItem label="类名">
+            {getFieldDecorator('name', {
+              rules: [{ required: true, message: 'Please input the title of collection!' }],
+            })(
+              <Input />
+            )}
+          </FormItem>
+        </Form>
+      </Modal>
+    );
+  }
+);
+
+const UpdateForm = Form.create()(
+  (props) => {
+    const { visible, onCancel, onCreate, form } = props;
+    const { getFieldDecorator } = form;
+    return (
+      <Modal
+        visible={visible}
+        title="修改分类"
+        okText="Create"
+        onCancel={onCancel}
+        onOk={onCreate}
+      >
+        <Form layout="vertical">
+          <FormItem label="类名">
+            {getFieldDecorator('name', {
+              rules: [{ required: true, message: 'Please input the title of collection!' }],
+            })(
+              <Input />
+            )}
+          </FormItem>
+        </Form>
+      </Modal>
+    );
+  }
+);
 
 class CategoryPage extends React.Component {
+  state = { Create1Modalvisible: false,Create2Modalvisible:false ,UpdateModalvisible:false}
+
+
   render(){
     const { categories } = this.props.category;
     return (
       <div>
+        <Button onClick={this.showCreate1Modal}>新增分类</Button>
+        <Create1Form
+          ref={this.saveFormRef}
+          visible={this.state.Create1Modalvisible}
+          onCancel={this.handleCreate1ModalCancel}
+          onCreate={this.handleCreate1ModalCreate}
+        />
+        <Create2Form
+          ref={this.saveFormRef}
+          visible={this.state.Create2Modalvisible}
+          onCancel={this.handleCreate2ModalCancel}
+          onCreate={this.handleCreate2ModalCreate}
+        />
+        <UpdateForm
+          ref={this.saveFormRef}
+          visible={this.state.UpdateModalvisible}
+          onCancel={this.handleUpdateModalCancel}
+          onCreate={this.handleUpdateModalCreate}
+        />
         {this.renderCategory(categories)}
       </div>
     );
+  }
+
+  saveFormRef = (form) => {
+    this.form = form;
+  }
+
+  showCreate1Modal = () => {
+    this.setState({
+      Create1Modalvisible: true,
+    });
+  }
+
+  showCreate2Modal = () => {
+    this.setState({
+      Create2Modalvisible: true,
+    });
+  }
+
+  showUpdateModal = () => {
+    this.setState({
+      UpdateModalvisible: true,
+    });
+  }
+
+  handleCreate1ModalCancel = () => {
+    this.setState({ Create1Modalvisible: false });
+  }
+
+  handleCreate2ModalCancel = () => {
+    this.setState({ Create2Modalvisible: false });
+  }
+
+  handleUpdateModalCancel = () => {
+    this.setState({ UpdateModalvisible: false });
+  }
+
+  handleCreate1ModalCreate = () => {
+    const form = this.form;
+    form.validateFields((err, values) => {
+      if (err) {
+        return;
+      }
+
+      console.log('Received values of form: ', values);
+      form.resetFields();
+      this.setState({ Create1Modalvisible: false });
+    });
+  }
+
+  handleCreate2ModalCreate = () => {
+    const form = this.form;
+    form.validateFields((err, values) => {
+      if (err) {
+        return;
+      }
+
+      console.log('Received values of form: ', values);
+      form.resetFields();
+      this.setState({ Create2Modalvisible: false });
+    });
+  }
+
+  handleUpdateModalCreate = () => {
+    const form = this.form;
+    form.validateFields((err, values) => {
+      if (err) {
+        return;
+      }
+
+      console.log('Received values of form: ', values);
+      form.resetFields();
+      this.setState({ UpdateModalvisible: false });
+    });
   }
 
   renderCategory(categories){
@@ -19,6 +195,8 @@ class CategoryPage extends React.Component {
         <div key={data.id}>
           <p>
             {data.nodeName}
+            <Button onClick={that.showCreate2Modal}>新增分类</Button>
+            <Button onClick={that.showUpdateModal}>修改分类</Button>
           </p>
           {that.renderChildren(data.children)}
         </div>
@@ -28,6 +206,7 @@ class CategoryPage extends React.Component {
   }
 
     renderChildren(children){
+      let that = this;
       if(children==null||children.length==0){
         return (<span/>)
       }
@@ -36,6 +215,8 @@ class CategoryPage extends React.Component {
         child.push(
           <p key={data.id}>
             {data.nodeName}
+            <Button onClick={that.showUpdateModal}>修改分类</Button>
+            <Button onClick={that.showDeleteModal}>删除分类</Button>
           </p>
         )
       });
