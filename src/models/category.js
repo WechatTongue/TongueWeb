@@ -1,5 +1,5 @@
 import pathToRegexp from 'path-to-regexp';
-import {queryCategory} from '../services/categoryService';
+import {queryCategory,deleteCategory} from '../services/categoryService';
 
 export default {
   namespace: 'category',
@@ -78,13 +78,24 @@ export default {
           payload:data
         })
       }
+    },
+    *delete({payload},{call,put}){
+      const data = yield call(deleteCategory, {
+        ...payload
+      });
+      if(data.ok){
+        yield put({
+          type:"update",
+          payload:data
+        })
+      }
     }
   },
   reducers: {
     update(state,action){
       console.log("action",action);
       return {...state,...action.payload}
-    }
+    },
   },
 };
 

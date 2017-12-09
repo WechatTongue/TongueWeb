@@ -3,6 +3,27 @@ import { connect } from 'dva';
 import { Modal,Button } from 'antd';
 import { Form, Input } from 'antd';
 const FormItem = Form.Item;
+const confirm = Modal.confirm;
+
+function showDeleteConfirm(e) {
+  console.log(e);
+  console.log(e.target);
+  confirm({
+    title: 'Are you sure delete '+e.target.getAttribute("name")+'?',
+    content: 'Some descriptions',
+    okText: 'Yes',
+    okType: 'danger',
+    cancelText: 'No',
+    onOk() {
+      deleteCategory(e.target.getAttribute("value"));
+    },
+    onCancel() {
+      console.log('Cancel');
+    },
+  });
+}
+
+
 
 const Create1Form = Form.create()(
   (props) => {
@@ -82,10 +103,14 @@ const UpdateForm = Form.create()(
   }
 );
 
+
+
 class CategoryPage extends React.Component {
-  state = { Create1Modalvisible: false,Create2Modalvisible:false ,UpdateModalvisible:false}
+  state = { Create1Modalvisible: false,Create2Modalvisible:false ,UpdateModalvisible:false ,DeleteModalvisible: false}
 
-
+  deleteCategory(id){
+    const {dispatch} = 
+  }
   render(){
     const { categories } = this.props.category;
     return (
@@ -133,6 +158,12 @@ class CategoryPage extends React.Component {
   showUpdateModal = () => {
     this.setState({
       UpdateModalvisible: true,
+    });
+  }
+
+  showDeleteModal = () => {
+    this.setState({
+      DeleteModalvisible: true,
     });
   }
 
@@ -216,7 +247,7 @@ class CategoryPage extends React.Component {
           <p key={data.id}>
             {data.nodeName}
             <Button onClick={that.showUpdateModal}>修改分类</Button>
-            <Button onClick={that.showDeleteModal}>删除分类</Button>
+            <Button value={data.id} name={data.nodeName} onClick={showDeleteConfirm}>删除分类</Button>
           </p>
         )
       });
