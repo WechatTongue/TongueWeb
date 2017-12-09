@@ -80,10 +80,11 @@ export default {
       }
     },
     *delete({payload},{call,put}){
+      console.log("yyyyyyyyyyyyyyy",payload);
       const data = yield call(deleteCategory, {
         ...payload
       });
-      if(data.ok){
+      if(data&&data.ok){
         yield put({
           type:"update",
           payload:data

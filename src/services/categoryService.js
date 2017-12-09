@@ -6,7 +6,7 @@ export async function addCategory(){
 
 
 export async function deleteCategory(params){
-
+  return {}
 }
 
 export async function queryCategory(){

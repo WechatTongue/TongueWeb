@@ -6,8 +6,13 @@ const FormItem = Form.Item;
 const confirm = Modal.confirm;
 
 function showDeleteConfirm(e) {
-  console.log(e);
-  console.log(e.target);
+  //console.log(e);
+  //console.log(e.target);
+  let that = this;
+  that.setState({
+      ...that.state,
+    deleteId:e.target.getAttribute("value")
+  });
   confirm({
     title: 'Are you sure delete '+e.target.getAttribute("name")+'?',
     content: 'Some descriptions',
@@ -15,7 +20,14 @@ function showDeleteConfirm(e) {
     okType: 'danger',
     cancelText: 'No',
     onOk() {
-      deleteCategory(e.target.getAttribute("value"));
+      console.log(that.state);
+      let { dispatch } =that.props;
+      dispatch({
+        type:'category/delete',
+        payload:{
+          id:that.state.deleteId
+        }
+      });
     },
     onCancel() {
       console.log('Cancel');
@@ -108,9 +120,7 @@ const UpdateForm = Form.create()(
 class CategoryPage extends React.Component {
   state = { Create1Modalvisible: false,Create2Modalvisible:false ,UpdateModalvisible:false ,DeleteModalvisible: false}
 
-  deleteCategory(id){
-    const {dispatch} = 
-  }
+
   render(){
     const { categories } = this.props.category;
     return (
@@ -247,7 +257,7 @@ class CategoryPage extends React.Component {
           <p key={data.id}>
             {data.nodeName}
             <Button onClick={that.showUpdateModal}>修改分类</Button>
-            <Button value={data.id} name={data.nodeName} onClick={showDeleteConfirm}>删除分类</Button>
+            <Button value={data.id} name={data.nodeName} onClick={showDeleteConfirm.bind(this)}>删除分类</Button>
           </p>
         )
       });
