@@ -8,11 +8,13 @@ export default {
       {
         workOrderId:12345,
         time:'2017-06-30 15:22:33',
-        description:"咳嗽咳咳咳咳咳咳咳咳"
+        description:"咳嗽咳咳咳咳咳咳咳咳",
+        type:"replied"
       },{
         workOrderId:123456,
         time:'2017-08-20 16:20:33',
-        description:"头晕脑胀胀胀胀胀胀胀胀胀胀胀胀胀胀胀胀"
+        description:"头晕脑胀胀胀胀胀胀胀胀胀胀胀胀胀胀胀胀",
+        type:"noreply"
       }
     ]
   },
@@ -48,7 +50,7 @@ export default {
     }
   },
   reducers: {
-    *update(state,action){
+    update(state,action){
       return{
         ...state,
         ...action.payload

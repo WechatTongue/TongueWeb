@@ -76,7 +76,10 @@ export async function queryWorkOrder(params){
         }],
         time:"2017-12-6 15:30"
       }
-    ]
+    ],
+    category:{
+      
+    }
   }
 
  // return request(`${host}/message/workorder/${params.id}`);
