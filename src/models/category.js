@@ -6,6 +6,10 @@ export default {
   state: {
     categories:[
       {
+        id:9,
+        nodeName:"可删除test",
+      },
+      {
         id:1,
         nodeName:"寒",
         children:[{

@@ -123,6 +123,7 @@ class CategoryPage extends React.Component {
 
   render(){
     const { categories } = this.props.category;
+    console.log(categories);
     return (
       <div>
         <Button onClick={this.showCreate1Modal}>新增分类</Button>
@@ -242,13 +243,24 @@ class CategoryPage extends React.Component {
     let divs = [];
     let that = this;
     categories.forEach(function (data) {
+      if(data.children==null||data.children.length==0){
+
+      }
       divs.push(
         <div key={data.id}>
           <p>
             {data.nodeName}
             <Button onClick={that.showCreate2Modal}>新增分类</Button>
             <Button onClick={that.showUpdateModal}>修改分类</Button>
-          </p>
+            {((item)=>{
+              console.log(item);
+              if((!item.children)||(item.children===null)||(item.children.length===0)){
+                return(
+                  <Button>删除分类</Button>
+                )
+              }
+            })(data)}
+            </p>
           {that.renderChildren(data.children)}
         </div>
       );
