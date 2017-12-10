@@ -1,5 +1,5 @@
 import pathToRegexp from 'path-to-regexp';
-import {queryCategory,deleteCategory,updateCategory,add2Category} from '../services/categoryService';
+import {queryCategory,deleteCategory,updateCategory,add2Category,add1Category} from '../services/categoryService';
 
 export default {
   namespace: 'category',
@@ -98,6 +98,18 @@ export default {
     *update({payload},{call,put}){
       console.log("uuuuuuuuu",payload);
       const data = yield call(updateCategory, {
+        ...payload
+      });
+      if(data&&data.ok){
+        yield put({
+          type:"update",
+          payload:data
+        })
+      }
+    },
+    *add1({payload},{call,put}){
+      console.log("add1",payload);
+      const data = yield call(add1Category, {
         ...payload
       });
       if(data&&data.ok){
