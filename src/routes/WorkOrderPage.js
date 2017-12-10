@@ -93,13 +93,13 @@ class WorkOrderPage extends React.Component{
     )
   }
 
-  renderInquiry(data){
+  renderInquiry(data,categories){
     return (
       <Timeline.Item dot={<Icon type="user" style={{fontSize: '16px'}}/>} color="blue"  key={data.sequenceId}>
         <div>
           <span color="blue">{data.time}</span><br/>
           {data.description}<br/>
-          {this.renderPhotos(data.photos)}
+          {this.renderPhotos(data.photos,categories)}
         </div>
       </Timeline.Item>
     )
@@ -113,14 +113,14 @@ class WorkOrderPage extends React.Component{
     )
   }
 
-  renderSequence(sequences){
+  renderSequence(sequences,categories){
     let chats =[];
     const that = this;
     sequences.forEach(function(data) {
       if(data.type=="inquiry"){
-        chats.push(that.renderInquiry(data))
+        chats.push(that.renderInquiry(data,categories))
       }else{
-        chats.push(that.renderDiagnostic(data))
+        chats.push(that.renderDiagnostic(data,categories))
       }
     });
     return chats;
@@ -134,7 +134,7 @@ class WorkOrderPage extends React.Component{
       <div style={{padding:'20px'}}>
         <Timeline>
           {this.renderWorkOrder({description,photos,time,categories})}
-          {this.renderSequence(sequences)}
+          {this.renderSequence(sequences,categories)}
         </Timeline>
     </div>
     );
