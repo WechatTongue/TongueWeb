@@ -1,10 +1,14 @@
 import pathToRegexp from 'path-to-regexp';
-import {queryCategory,deleteCategory} from '../services/categoryService';
+import {queryCategory,deleteCategory,updateCategory,add2Category,add1Category} from '../services/categoryService';
 
 export default {
   namespace: 'category',
   state: {
     categories:[
+      {
+        id:9,
+        nodeName:"可删除test",
+      },
       {
         id:1,
         nodeName:"寒",
@@ -90,7 +94,43 @@ export default {
           payload:data
         })
       }
-    }
+    },
+    *update({payload},{call,put}){
+      console.log("uuuuuuuuu",payload);
+      const data = yield call(updateCategory, {
+        ...payload
+      });
+      if(data&&data.ok){
+        yield put({
+          type:"update",
+          payload:data
+        })
+      }
+    },
+    *add1({payload},{call,put}){
+      console.log("add1",payload);
+      const data = yield call(add1Category, {
+        ...payload
+      });
+      if(data&&data.ok){
+        yield put({
+          type:"update",
+          payload:data
+        })
+      }
+    },
+    *add2({payload},{call,put}){
+      console.log("add2",payload);
+      const data = yield call(add2Category, {
+        ...payload
+      });
+      if(data&&data.ok){
+        yield put({
+          type:"update",
+          payload:data
+        })
+      }
+    },
   },
   reducers: {
     update(state,action){

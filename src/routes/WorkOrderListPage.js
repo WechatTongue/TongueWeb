@@ -2,6 +2,8 @@ import React from 'react';
 import { connect } from 'dva';
 import { Card } from 'antd';
 import { Link } from 'dva/router';
+import { Tabs } from 'antd';
+const TabPane = Tabs.TabPane;
 
 class WorkOrderListPage extends React.Component {
 
@@ -25,21 +27,10 @@ class WorkOrderListPage extends React.Component {
     const { workOrderList } = this.props.workOrderList;
     return (
       <div>
-        <ul id="myTab" class="nav nav-tabs">
-          <li class="active"><a href="#replied" data-toggle="tab"> 未回复
-          </a></li>
-          <li><a href="#noreply" data-toggle="tab">已回复</a></li>
-        </ul>
-        <div id="myTabContent" class="tab-content">
-          <div class="tab-pane fade in active" id="replied">
-            <p>未回复</p>
-            {this.renderWorkOrder(workOrderList,"noreply")}
-          </div>
-          <div class="tab-pane fade" id="noreply">
-            <p>已回复</p>
-            {this.renderWorkOrder(workOrderList,"replied")}
-          </div>
-        </div>
+        <Tabs defaultActiveKey="1">
+          <TabPane tab="未回复" key="1">{this.renderWorkOrder(workOrderList,"noreply")}</TabPane>
+          <TabPane tab="已回复" key="2">{this.renderWorkOrder(workOrderList,"replied")}</TabPane>
+        </Tabs>
       </div>
     );
   }
