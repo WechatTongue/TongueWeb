@@ -6,8 +6,6 @@ const FormItem = Form.Item;
 const confirm = Modal.confirm;
 
 function showDeleteConfirm(e) {
-  //console.log(e);
-  //console.log(e.target);
   let that = this;
   that.setState({
       ...that.state,
@@ -34,60 +32,6 @@ function showDeleteConfirm(e) {
     },
   });
 }
-
-
-
-const Create1Form = Form.create()(
-  (props) => {
-    const { visible, onCancel, onCreate, form } = props;
-    const { getFieldDecorator } = form;
-    return (
-      <Modal
-        visible={visible}
-        title="新增分类"
-        okText="Create"
-        onCancel={onCancel}
-        onOk={onCreate}
-      >
-        <Form layout="vertical">
-          <FormItem label="类名">
-            {getFieldDecorator('name', {
-              rules: [{ required: true, message: 'Please input the title of collection!' }],
-            })(
-              <Input />
-            )}
-          </FormItem>
-        </Form>
-      </Modal>
-    );
-  }
-);
-
-const Create2Form = Form.create()(
-  (props) => {
-    const { visible, onCancel, onCreate, form } = props;
-    const { getFieldDecorator } = form;
-    return (
-      <Modal
-        visible={visible}
-        title="新增分类"
-        okText="Create"
-        onCancel={onCancel}
-        onOk={onCreate}
-      >
-        <Form layout="vertical">
-          <FormItem label="类名">
-            {getFieldDecorator('name', {
-              rules: [{ required: true, message: 'Please input the title of collection!' }],
-            })(
-              <Input />
-            )}
-          </FormItem>
-        </Form>
-      </Modal>
-    );
-  }
-);
 
 const UpdateForm = Form.create()(
   (props) => {
@@ -120,25 +64,12 @@ const UpdateForm = Form.create()(
 class CategoryPage extends React.Component {
   state = { Create1Modalvisible: false,Create2Modalvisible:false ,UpdateModalvisible:false ,DeleteModalvisible: false}
 
-
   render(){
     const { categories } = this.props.category;
     console.log(categories);
     return (
       <div>
-        <Button onClick={this.showCreate1Modal}>新增分类</Button>
-        <Create1Form
-          ref={this.saveFormRef}
-          visible={this.state.Create1Modalvisible}
-          onCancel={this.handleCreate1ModalCancel}
-          onCreate={this.handleCreate1ModalCreate}
-        />
-        <Create2Form
-          ref={this.saveFormRef}
-          visible={this.state.Create2Modalvisible}
-          onCancel={this.handleCreate2ModalCancel}
-          onCreate={this.handleCreate2ModalCreate}
-        />
+        <Button>新增分类</Button>
         <UpdateForm
           ref={this.saveFormRef}
           visible={this.state.UpdateModalvisible}
@@ -154,24 +85,11 @@ class CategoryPage extends React.Component {
     this.form = form;
   }
 
-  showCreate1Modal = () => {
-    this.setState({
-      Create1Modalvisible: true,
-    });
-  }
-
-  showCreate2Modal = () => {
-    this.setState({
-      Create2Modalvisible: true,
-    });
-  }
-
   showUpdateModal = (e) => {
     this.setState({
       UpdateModalvisible: true,
       updateId:e.target.getAttribute("value")
     });
-    console.log(e.target.getAttribute("value"));
   }
 
   showDeleteModal = () => {
@@ -180,43 +98,10 @@ class CategoryPage extends React.Component {
     });
   }
 
-  handleCreate1ModalCancel = () => {
-    this.setState({ Create1Modalvisible: false });
-  }
-
-  handleCreate2ModalCancel = () => {
-    this.setState({ Create2Modalvisible: false });
-  }
-
   handleUpdateModalCancel = () => {
     this.setState({ UpdateModalvisible: false });
   }
 
-  handleCreate1ModalCreate = () => {
-    const form = this.form;
-    form.validateFields((err, values) => {
-      if (err) {
-        return;
-      }
-
-      console.log('Received values of form: ', values);
-      form.resetFields();
-      this.setState({ Create1Modalvisible: false });
-    });
-  }
-
-  handleCreate2ModalCreate = () => {
-    const form = this.form;
-    form.validateFields((err, values) => {
-      if (err) {
-        return;
-      }
-
-      console.log('Received values of form: ', values);
-      form.resetFields();
-      this.setState({ Create2Modalvisible: false });
-    });
-  }
 
   handleUpdateModalCreate = () => {
     const form = this.form;
@@ -238,7 +123,6 @@ class CategoryPage extends React.Component {
     });
   }
 
-
   renderCategory(categories){
     let divs = [];
     let that = this;
@@ -250,7 +134,7 @@ class CategoryPage extends React.Component {
         <div key={data.id}>
           <p>
             {data.nodeName}
-            <Button onClick={that.showCreate2Modal}>新增分类</Button>
+            <Button>新增分类</Button>
             <Button onClick={that.showUpdateModal}>修改分类</Button>
             {((item)=>{
               console.log(item);

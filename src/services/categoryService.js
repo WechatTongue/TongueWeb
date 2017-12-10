@@ -13,6 +13,10 @@ export async function updateCategory(params){
   return {}
 }
 
+export async function add2Category(params){
+  return {}
+}
+
 export async function queryCategory(){
   return {
     ok:true,
