@@ -113,8 +113,33 @@ class CategoryPage extends React.Component {
           onCreate={this.handleUpdateModalCreate}
         />
         {this.renderCategory(categories)}
+        <Tree
+          // checkable
+          // onExpand={this.onExpand}
+          // expandedKeys={this.state.expandedKeys}
+          // autoExpandParent={this.state.autoExpandParent}
+          // onCheck={this.onCheck}
+          // checkedKeys={this.state.checkedKeys}
+          // onSelect={this.onSelect}
+          // selectedKeys={this.state.selectedKeys}
+        >
+          {this.renderTreeNodes(categories)}
+        </Tree>
       </div>
     );
+  }
+
+  renderTreeNodes = (data) => {
+    return data.map((item) => {
+      if (item.children) {
+        return (
+          <TreeNode title={item.nodeName} key={item.id} dataRef={item}>
+            {this.renderTreeNodes(item.children)}
+          </TreeNode>
+        );
+      }
+      return <TreeNode title={item.nodeName} key={item.id} dataRef={item}/>;
+    });
   }
 
   saveFormRef = (form) => {
