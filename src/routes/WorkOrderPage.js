@@ -3,6 +3,7 @@ import React from 'react';
 import { connect } from 'dva';
 import { Timeline, Icon ,Card,Input,Button,Form,Modal} from 'antd';
 import { Cascader } from 'antd';
+import {formatTime} from "../utils/format";
 const FormItem = Form.Item;
 
 function getOptions(categories){
@@ -77,7 +78,7 @@ class WorkOrderPage extends React.Component{
       }
       photoWall.push(
         <div>
-          <img src = {photo.url} style={{marginRight: '10px',marginTop:'5px'}} key={photo.id} />
+          <img src = {`http://www.ufengtech.xyz${photo.url.substring(5)}`} style={{marginRight: '10px',marginTop:'5px'}} key={photo.id} />
           <Cascader options={getOptions(categories)} onChange={onChange} placeholder={photoCategory} />
         </div>
       )
@@ -86,13 +87,12 @@ class WorkOrderPage extends React.Component{
 
   }
 
-  renderWorkOrder({photos,description,time,categories}){
+  renderWorkOrder({description,time}){
     return (
       <Timeline.Item dot={<Icon type="user" style={{fontSize: '16px'}}/>} color="blue"  key={1}>
         <div>
-          <span color="blue">{time}</span><br/>
+          <span color="blue">{formatTime(time)}</span><br/>
           {description}<br/>
-          {this.renderPhotos(photos,categories)}
        </div>
      </Timeline.Item>
     )
@@ -180,7 +180,7 @@ class WorkOrderPage extends React.Component{
   }
 
   render(){
-    const { description, photos, time, chats} =this.props.workOrder;
+    const { description, time, chats} =this.props.workOrder;
     const { categories } = this.props.category;
 
     return (
@@ -192,7 +192,7 @@ class WorkOrderPage extends React.Component{
           onCreate={this.handleModalCreate}
         />
         <Timeline>
-          {this.renderWorkOrder({description,photos,time,categories})}
+          {this.renderWorkOrder({description,time,categories})}
           {this.renderSequence(chats,categories)}
         </Timeline>
         <Button onClick={this.showModal.bind(this)}>新增回复</Button>
