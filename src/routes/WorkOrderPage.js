@@ -79,7 +79,7 @@ class WorkOrderPage extends React.Component{
       photoWall.push(
         <div>
           <img src = {`http://www.ufengtech.xyz${photo.url.substring(5)}`} style={{marginRight: '10px',marginTop:'5px'}} key={photo.id} />
-          <Cascader options={getOptions(categories)} onChange={onChange} placeholder={photoCategory} />
+          <Cascader title={photo.id} options={getOptions(categories)} onChange={onChange} placeholder={photoCategory} />
         </div>
       )
     });
