@@ -9,12 +9,12 @@ export default {
         workOrderId:12345,
         time:'2017-06-30 15:22:33',
         description:"咳嗽咳咳咳咳咳咳咳咳",
-        type:"replied"
+        lastChat:"doctor"
       },{
         workOrderId:123456,
         time:'2017-08-20 16:20:33',
         description:"头晕脑胀胀胀胀胀胀胀胀胀胀胀胀胀胀胀胀",
-        type:"noreply"
+        lastChat:"patient"
       }
     ]
   },
@@ -38,11 +38,12 @@ export default {
   },
   effects: {
     *queryWorkOrderList({payload},{call,put}){
-      const data = call(queryWorkOrderList,{
-        patientId:payload.patientId
+      const data = yield call(queryWorkOrderList,{
+        ...payload
       });
+      console.log("data",data);
       if(data.ok){
-        put({
+        yield put({
           type:'update',
           payload:data
         })
@@ -51,6 +52,7 @@ export default {
   },
   reducers: {
     update(state,action){
+      console.log("update state");
       return{
         ...state,
         ...action.payload

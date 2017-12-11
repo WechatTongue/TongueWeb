@@ -10,7 +10,7 @@ class WorkOrderListPage extends React.Component {
   renderWorkOrder(workOrderList,type){
     let cards=[];
     workOrderList.forEach((workOrder,index)=>{
-      if(workOrder.type==type) {
+      if(workOrder.lastChat==type) {
         cards.push(
           <Link to={`/workOrder/${workOrder.workOrderId}`}>
             <Card title={workOrder.time} style={{width: 800, margin: 20}} key={index}>
@@ -28,8 +28,8 @@ class WorkOrderListPage extends React.Component {
     return (
       <div>
         <Tabs defaultActiveKey="1">
-          <TabPane tab="未回复" key="1">{this.renderWorkOrder(workOrderList,"noreply")}</TabPane>
-          <TabPane tab="已回复" key="2">{this.renderWorkOrder(workOrderList,"replied")}</TabPane>
+          <TabPane tab="未回复" key="1">{this.renderWorkOrder(workOrderList,"patient")}</TabPane>
+          <TabPane tab="已回复" key="2">{this.renderWorkOrder(workOrderList,"doctor")}</TabPane>
         </Tabs>
       </div>
     );

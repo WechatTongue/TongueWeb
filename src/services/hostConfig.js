@@ -1,4 +1,4 @@
 
 
-const host = '//localhost:8080/api';
+const host = 'http://www.ufengtech.xyz:8081';
 export default host;

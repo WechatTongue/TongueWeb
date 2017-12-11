@@ -6,7 +6,7 @@ export default {
   state: {
     patientId:1,
     description:"",
-    type:"",  //病人的问诊
+    lastChat:"",  //病人的问诊
     photos:[{
       id:0,
       url:"",
@@ -53,7 +53,7 @@ export default {
       const data = yield call(queryWorkOrder,{
         ...payload
       });
-      console.log("data",data);
+      console.log("queryWorkOrder",data);
       if(data.ok){
         yield put({
           type:'update',

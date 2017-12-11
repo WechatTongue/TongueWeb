@@ -91,17 +91,7 @@ export async function queryWorkOrder(params){
 }
 
 export async function queryWorkOrderList(params){
-  return [
-    {
-      id:12345,
-      time:'2017-06-30 15:22:33'
-    },{
-      id:123456,
-      time:'2017-08-20 16:20:33'
-    },{
-      id:45678,
-      time:'2017-12-02 12:00:00'
-    }
-  ];
-  //return request(`${host}/message/workorderlist/${openId}`);
+  return request(`${host}/message/workorders/docter`,{
+    method : 'GET',
+  });
 }

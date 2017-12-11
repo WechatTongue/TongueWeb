@@ -1,37 +1,9 @@
 //单个WorkOrder
 import React from 'react';
 import { connect } from 'dva';
-import { Timeline, Icon ,Select} from 'antd';
+import { Timeline, Icon ,Card,Input,Button,Form,Modal} from 'antd';
 import { Cascader } from 'antd';
-
-function handleChange(value) {
-  console.log(`selected ${value}`);
-}
-
-const options = [{
-  value: 'zhejiang',
-  label: 'Zhejiang',
-  children: [{
-    value: 'hangzhou',
-    label: 'Hangzhou',
-    children: [{
-      value: 'xihu',
-      label: 'West Lake',
-    }],
-  }],
-}, {
-  value: 'jiangsu',
-  label: 'Jiangsu',
-  disabled: true,
-  children: [{
-    value: 'nanjing',
-    label: 'Nanjing',
-    children: [{
-      value: 'zhonghuamen',
-      label: 'Zhong Hua Men',
-    }],
-  }],
-}];
+const FormItem = Form.Item;
 
 function getOptions(categories){
   let options = [];
@@ -59,10 +31,36 @@ function onChange(value) {
   console.log(value);
 }
 
+const DescriptionForm = Form.create()(
+  (props) => {
+    const { visible, onCancel, onCreate, form } = props;
+    const { getFieldDecorator } = form;
+    return (
+      <Modal
+        visible={visible}
+        title="新增回复"
+        okText="Create"
+        onCancel={onCancel}
+        onOk={onCreate}
+      >
+        <Form layout="vertical">
+          <FormItem label="回复内容">
+            {getFieldDecorator('description', {
+              rules: [{ required: true, message: 'Please input the title of collection!' }],
+            })(
+              <Input />
+            )}
+          </FormItem>
+        </Form>
+      </Modal>
+    );
+  }
+);
+
 class WorkOrderPage extends React.Component{
+  state = { visible: false,};
 
   renderPhotos(photos,categories){
-    console.log("ball",categories)
     let that = this;
 
     if(photos==null||photos.length==0){
@@ -70,10 +68,17 @@ class WorkOrderPage extends React.Component{
     }
     let photoWall =[];
     photos.forEach((photo)=>{
+      let photoCategory = "选择分类";
+      if (photo.category&&photo.category!=null){
+          photoCategory = photo.category.nodeName;
+          if(photo.category.children&&photo.category.children!=null){
+            photoCategory+=" / "+photo.category.children.nodeName;
+          }
+      }
       photoWall.push(
         <div>
           <img src = {photo.url} style={{marginRight: '10px',marginTop:'5px'}} key={photo.id} />
-          <Cascader options={getOptions(categories)} onChange={onChange}/>
+          <Cascader options={getOptions(categories)} onChange={onChange} placeholder={photoCategory} />
         </div>
       )
     });
@@ -126,16 +131,71 @@ class WorkOrderPage extends React.Component{
     return chats;
   }
 
+  onSubmit(){
+    console.log("submit",this.state);
+    let { dispatch } = this.props;
+    let { description,date,time} = this.state.fields;
+    let { workOrderId } = this.props.workOrder;
+    dispatch({
+      type:'workOrder/addChat',
+      payload:{
+        workOrderId:workOrderId,
+        description:description,
+        sequenceId:1,
+        time:`${date}T${time}`,
+        type:"diagnostic"
+      }
+    })
+  };
+
+  showModal = () => {
+    this.setState({
+      visible: true,
+    });
+  }
+
+  handleModalCancel = () => {
+    this.setState({ visible: false });
+  }
+
+  handleModalCreate = () => {
+    const form = this.form;
+    const that = this;
+    form.validateFields((err, values) => {
+      if (err) {
+        return;
+      }
+      // let { dispatch } =that.props;
+      // dispatch({
+      //   type:'category/update',
+      //   payload:{
+      //     id:that.state.updateId,
+      //     name:values.name
+      //   }
+      // });
+      console.log(values);
+      form.resetFields();
+      this.setState({ visible: false });
+    });
+  }
+
   render(){
     const { description, photos, time, sequences} =this.props.workOrder;
     const { categories } = this.props.category;
 
     return (
       <div style={{padding:'20px'}}>
+        <DescriptionForm
+          ref={this.saveFormRef}
+          visible={this.state.visible}
+          onCancel={this.handleModalCancel}
+          onCreate={this.handleModalCreate}
+        />
         <Timeline>
           {this.renderWorkOrder({description,photos,time,categories})}
           {this.renderSequence(sequences,categories)}
         </Timeline>
+        <Button onClick={this.showModal.bind(this)}>新增回复</Button>
     </div>
     );
   }
