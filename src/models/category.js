@@ -129,7 +129,6 @@ export default {
   },
   reducers: {
     update(state,action){
-      console.log("action",action);
       return {categories:action.payload}
     },
   },

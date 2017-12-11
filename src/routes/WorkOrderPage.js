@@ -182,6 +182,7 @@ class WorkOrderPage extends React.Component{
   render(){
     const { description, time, chats} =this.props.workOrder;
     const { categories } = this.props.category;
+    console.log(categories);
 
     return (
       <div style={{padding:'20px'}}>

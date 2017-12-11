@@ -43,6 +43,9 @@ export default {
               workOrderId:workOrderId
             }
           })
+          dispatch({
+            type:'category/query',
+          })
         }
       })
     }

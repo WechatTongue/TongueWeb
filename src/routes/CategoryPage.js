@@ -229,7 +229,6 @@ class CategoryPage extends React.Component {
             <Button value={data.id} name={data.nodeName} onClick={that.showCreate2Modal}>新增分类</Button>
             <Button value={data.id} name={data.nodeName} onClick={that.showUpdateModal}>修改分类</Button>
             {((item)=>{
-              console.log(item);
               if((!item.children)||(item.children===null)||(item.children.length===0)){
                 return(
                   <Button>删除分类</Button>
