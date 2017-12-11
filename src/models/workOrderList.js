@@ -54,11 +54,8 @@ export default {
     update(state,action){
       console.log("update state");
       return{
-        ...state,
-        ...action.payload
+        workOrderList: action.payload
       }
     }
   },
-
-
 };

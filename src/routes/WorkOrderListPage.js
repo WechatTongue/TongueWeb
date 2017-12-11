@@ -3,6 +3,8 @@ import { connect } from 'dva';
 import { Card } from 'antd';
 import { Link } from 'dva/router';
 import { Tabs } from 'antd';
+import { formatTime } from '../utils/format';
+
 const TabPane = Tabs.TabPane;
 
 class WorkOrderListPage extends React.Component {
@@ -13,7 +15,7 @@ class WorkOrderListPage extends React.Component {
       if(workOrder.lastChat==type) {
         cards.push(
           <Link to={`/workOrder/${workOrder.workOrderId}`}>
-            <Card title={workOrder.time} style={{width: 800, margin: 20}} key={index}>
+            <Card title={formatTime(workOrder.time)}  style={{width: 800, margin: 20}} key={index}>
               <p>{workOrder.description}</p>
             </Card>
           </Link>

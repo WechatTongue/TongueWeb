@@ -1,7 +1,25 @@
 import fetch from 'dva/fetch';
 
-function parseJSON(response) {
-  return response.json();
+function parse(response) {
+  let promise = null;
+
+  if (response.headers == null) {
+    return;
+  }
+
+  const contentType = response.headers.get('Content-Type');
+
+  if (contentType == null) {
+    return;
+  }
+
+  if (contentType.indexOf('text') >= 0) {
+    promise = response.text();
+    return promise;
+  } else if (contentType.indexOf('json') >= 0) {
+    promise = response.json();
+    return promise;
+  }
 }
 
 function checkStatus(response) {
@@ -22,9 +40,28 @@ function checkStatus(response) {
  * @return {object}           An object containing either "data" or "err"
  */
 export default function request(url, options) {
+
+  if (options == null) {
+    options = {};
+  }
+
+  if (options.headers == null) {
+    options.headers = {};
+  }
+
+  options.headers['Content-Type'] = 'application/json';
+
   return fetch(url, options)
     .then(checkStatus)
-    .then(parseJSON)
-    .then(data => ({ data }))
+    .then(parse)
+    .then((data) => {
+      if (data == null) {
+        data = {};
+      }
+      if (data.ok == null ) {
+        data.ok = true;
+      }
+      return data;
+    })
     .catch(err => ({ err }));
 }

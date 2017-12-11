@@ -180,7 +180,7 @@ class WorkOrderPage extends React.Component{
   }
 
   render(){
-    const { description, photos, time, sequences} =this.props.workOrder;
+    const { description, photos, time, chats} =this.props.workOrder;
     const { categories } = this.props.category;
 
     return (
@@ -193,7 +193,7 @@ class WorkOrderPage extends React.Component{
         />
         <Timeline>
           {this.renderWorkOrder({description,photos,time,categories})}
-          {this.renderSequence(sequences,categories)}
+          {this.renderSequence(chats,categories)}
         </Timeline>
         <Button onClick={this.showModal.bind(this)}>新增回复</Button>
     </div>

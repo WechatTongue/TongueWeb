@@ -12,7 +12,7 @@ export default {
       url:"",
     }],
     time:"",
-    sequences:[
+    chats:[
       {
         workOrderId:1,
         patientId:1,
