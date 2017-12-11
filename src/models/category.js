@@ -6,10 +6,6 @@ export default {
   state: {
     categories:[
       {
-        id:9,
-        nodeName:"可删除test",
-      },
-      {
         id:1,
         nodeName:"寒",
         children:[{
@@ -79,7 +75,7 @@ export default {
       if(data.ok){
         yield put({
           type:'update',
-          payload:data
+          payload:data.children
         })
       }
     },
@@ -95,8 +91,7 @@ export default {
         })
       }
     },
-    *update({payload},{call,put}){
-      console.log("uuuuuuuuu",payload);
+    *updateCategory({payload},{call,put}){
       const data = yield call(updateCategory, {
         ...payload
       });
@@ -135,7 +130,7 @@ export default {
   reducers: {
     update(state,action){
       console.log("action",action);
-      return {...state,...action.payload}
+      return {categories:action.payload}
     },
   },
 };
