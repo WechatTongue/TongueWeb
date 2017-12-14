@@ -198,16 +198,17 @@ class CategoryPage extends React.Component {
   handleUpdateModalCreate = () => {
     const form = this.form;
     const that = this;
+    console.log(this);
     form.validateFields((err, values) => {
       if (err) {
         return;
       }
       let { dispatch } =that.props;
       dispatch({
-        type:'category/update',
+        type:'category/updateCategory',
         payload:{
           id:that.state.updateId,
-          name:values.name
+          newName:values.name
         }
       });
       form.resetFields();
@@ -219,9 +220,6 @@ class CategoryPage extends React.Component {
     let divs = [];
     let that = this;
     categories.forEach(function (data) {
-      if(data.children==null||data.children.length==0){
-
-      }
       divs.push(
         <div key={data.id}>
           <p>
@@ -231,7 +229,7 @@ class CategoryPage extends React.Component {
             {((item)=>{
               if((!item.children)||(item.children===null)||(item.children.length===0)){
                 return(
-                  <Button>删除分类</Button>
+                  <Button value={data.id} name={data.nodeName} onClick={showDeleteConfirm.bind(that)}>删除分类</Button>
                 )
               }
             })(data)}

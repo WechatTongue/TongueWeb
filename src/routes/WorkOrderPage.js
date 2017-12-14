@@ -32,21 +32,21 @@ function onChange(value,options) {
   console.log("onChange",value,options);
 }
 
-const DescriptionForm = Form.create()(
+const CollectionCreateForm = Form.create()(
   (props) => {
     const { visible, onCancel, onCreate, form } = props;
     const { getFieldDecorator } = form;
     return (
       <Modal
         visible={visible}
-        title="新增回复"
+        title="Create a new collection"
         okText="Create"
         onCancel={onCancel}
         onOk={onCreate}
       >
         <Form layout="vertical">
-          <FormItem label="回复内容">
-            {getFieldDecorator('description', {
+          <FormItem label="Title">
+            {getFieldDecorator('title', {
               rules: [{ required: true, message: 'Please input the title of collection!' }],
             })(
               <Input />
@@ -59,7 +59,27 @@ const DescriptionForm = Form.create()(
 );
 
 class WorkOrderPage extends React.Component{
-  state = { visible: false,};
+  state = {
+    visible: false,
+  };
+  showModal = () => {
+    this.setState({ visible: true });
+  }
+  handleCancel = () => {
+    this.setState({ visible: false });
+  }
+  handleCreate = () => {
+    const form = this.form;
+    form.validateFields((err, values) => {
+      if (err) {
+        return;
+      }
+
+      console.log('Received values of form: ', values);
+      form.resetFields();
+      this.setState({ visible: false });
+    });
+  }
 
   renderPhotos(photos,categories){
     let that = this;
@@ -148,18 +168,13 @@ class WorkOrderPage extends React.Component{
     })
   };
 
-  showModal = () => {
-    this.setState({
-      visible: true,
-    });
-  }
-
   handleModalCancel = () => {
     this.setState({ visible: false });
   }
 
   handleModalCreate = () => {
     const form = this.form;
+    console.log(this);
     const that = this;
     form.validateFields((err, values) => {
       if (err) {
@@ -186,11 +201,11 @@ class WorkOrderPage extends React.Component{
 
     return (
       <div style={{padding:'20px'}}>
-        <DescriptionForm
+        <CollectionCreateForm
           ref={this.saveFormRef}
           visible={this.state.visible}
-          onCancel={this.handleModalCancel}
-          onCreate={this.handleModalCreate}
+          onCancel={this.handleCancel}
+          onCreate={this.handleCreate}
         />
         <Timeline>
           {this.renderWorkOrder({description,time,categories})}

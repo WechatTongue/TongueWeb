@@ -6,11 +6,16 @@ export async function addCategory(){
 
 
 export async function deleteCategory(params){
-  return {}
+  return request(`${host}/api/category/${params.id}`,{
+    method : 'DELETE'
+  });
 }
 
 export async function updateCategory(params){
-  return {}
+
+  return request(`${host}/api/category?id=${params.id}&newName=${params.newName}`,{
+    method : 'PUT'
+  });
 }
 
 export async function add1Category(params){
