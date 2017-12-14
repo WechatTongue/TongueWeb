@@ -1,9 +1,6 @@
 import request from '../utils/request';
 import host from './hostConfig';
 
-export async function addCategory(){
-}
-
 
 export async function deleteCategory(params){
   return request(`${host}/api/category/${params.id}`,{
@@ -18,12 +15,11 @@ export async function updateCategory(params){
   });
 }
 
-export async function add1Category(params){
-  return {}
-}
-
-export async function add2Category(params){
-  return {}
+export async function addCategory(params){
+  console.log("addCategory",params);
+  return request(`${host}/api/category?pid=${params.pid}&nodeName=${params.nodeName}`,{
+    method : 'POST'
+  });
 }
 
 export async function queryCategory(){

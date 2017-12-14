@@ -39,15 +39,15 @@ const CollectionCreateForm = Form.create()(
     return (
       <Modal
         visible={visible}
-        title="Create a new collection"
+        title="新增回复"
         okText="Create"
         onCancel={onCancel}
         onOk={onCreate}
       >
         <Form layout="vertical">
-          <FormItem label="Title">
-            {getFieldDecorator('title', {
-              rules: [{ required: true, message: 'Please input the title of collection!' }],
+          <FormItem label="回复内容">
+            {getFieldDecorator('content', {
+              rules: [{ required: true, message: '请输入回复内容!' }],
             })(
               <Input />
             )}
@@ -69,13 +69,23 @@ class WorkOrderPage extends React.Component{
     this.setState({ visible: false });
   }
   handleCreate = () => {
+    let { workOrderId } =this.props.workOrder;
+    console.log(workOrderId);
     const form = this.form;
+    const that = this;
     form.validateFields((err, values) => {
       if (err) {
         return;
       }
-
-      console.log('Received values of form: ', values);
+      let { dispatch } =that.props;
+      dispatch({
+        type:'workOrder/addChat',
+        payload:{
+          workOrderId:workOrderId,
+          description:values.content,
+          type:"diagnostic"
+        }
+      });
       form.resetFields();
       this.setState({ visible: false });
     });
@@ -174,7 +184,6 @@ class WorkOrderPage extends React.Component{
 
   handleModalCreate = () => {
     const form = this.form;
-    console.log(this);
     const that = this;
     form.validateFields((err, values) => {
       if (err) {
@@ -192,6 +201,10 @@ class WorkOrderPage extends React.Component{
       form.resetFields();
       this.setState({ visible: false });
     });
+  }
+
+  saveFormRef = (form) => {
+    this.form = form;
   }
 
   render(){

@@ -1,5 +1,5 @@
 import pathToRegexp from 'path-to-regexp';
-import {queryWorkOrder,addWorkOrder} from '../services/messageService';
+import {queryWorkOrder,addChat} from '../services/messageService';
 
 export default {
   namespace: 'workOrder',
@@ -64,17 +64,19 @@ export default {
         })
       }
     },
-    *add({payload},{call,put}){
-      const data = yield call(addWorkOrder,{
+    *addChat({payload},{call,put}){
+      console.log("payload",payload);
+      const data = yield call(addChat,{
         ...payload
       });
+      console.log("dta",data);
       if(data.ok){
         yield put({
-          type:'update',
-          payload:data
+          type:'query',
+          payload:payload.workOrderId
         })
       }
-    }
+    },
   },
   reducers: {
     update(state,action){

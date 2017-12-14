@@ -99,9 +99,9 @@ class CategoryPage extends React.Component {
     console.log(categories);
     return (
       <div>
-        <Button>新增分类</Button>
+        <Button onClick={this.showCreate1Modal}>新增分类</Button>
         <Create2Form
-          ref={this.saveFromRefCreate}
+          ref={this.saveForm2Create}
           visible={this.state.Create2Modalvisible}
           onCancel={this.handleCreate2ModalCancel}
           onCreate={this.handleCreate2ModalCreate}
@@ -142,13 +142,20 @@ class CategoryPage extends React.Component {
     });
   }
 
-  saveFromRefCreate = (form) =>{
+  saveForm2Create = (form) =>{
     this.createForm = form;
   }
 
   saveFormRef = (form) => {
     console.log("saveFromRef",form);
     this.form = form;
+  }
+
+  showCreate1Modal = (e) => {
+    this.setState({
+      Create2Modalvisible: true,
+      addId:1
+    });
   }
 
   showCreate2Modal = (e) => {
@@ -189,10 +196,10 @@ class CategoryPage extends React.Component {
       }
       let { dispatch } =that.props;
       dispatch({
-        type:'category/add2',
+        type:'category/add',
         payload:{
-          id:that.state.addId,
-          name:values.name
+          pid:that.state.addId,
+          nodeName:values.name
         }
       });
       form.resetFields();
