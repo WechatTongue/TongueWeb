@@ -108,26 +108,28 @@ class WorkOrderPage extends React.Component{
   }
 
   getPhotoCategory(categoryId,categories) {
+    console.log("categoryId", categoryId);
     if (categoryId == 1) {
       return "选择分类";
     }
-    categories.forEach((category)=>{
+    for (let i = 0; i < categories.length; i++) {
+      let category = categories[i];
       let photoCategory = category.nodeName;
-      if(category.id==categoryId){
+      if (category.id == categoryId) {
         return photoCategory;
       }
-      if(category.children&&category.children!=null&&category.children.length!=0){
-        category.children.forEach((child)=>{
-          if(child.id==categoryId){
-            photoCategory+=" / "+child.nodeName;
+      if (category.children && category.children != null && category.children.length != 0) {
+        for (let j = 0; j < category.children.length; j++) {
+          let child = category.children[j];
+          if (child.id == categoryId) {
+            console.log("ok");
+            photoCategory += " / " + child.nodeName;
             return photoCategory;
           }
-          }
-        );
+        }
       }
-      return photoCategory;
-      }
-    );
+    }
+    return "选择分类";
   }
 
 
