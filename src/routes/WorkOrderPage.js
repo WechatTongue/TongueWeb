@@ -28,8 +28,8 @@ function getOptions(categories){
   );
   return options;
 }
-function onChange(value) {
-  console.log(value);
+function onChange(value,options) {
+  console.log("onChange",value,options);
 }
 
 const DescriptionForm = Form.create()(
