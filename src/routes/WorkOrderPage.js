@@ -1,8 +1,8 @@
 //单个WorkOrder
 import React from 'react';
 import { connect } from 'dva';
-import { Timeline, Icon ,Card,Input,Button,Form,Modal} from 'antd';
-import { Cascader } from 'antd';
+import { Timeline, Icon ,Input,Button,Form,Modal,Cascader,Layout} from 'antd';
+import AppHeader from '../components/AppHeader';
 import {formatTime} from "../utils/format";
 const FormItem = Form.Item;
 
@@ -55,7 +55,8 @@ const CollectionCreateForm = Form.create()(
       <Modal
         visible={visible}
         title="新增回复"
-        okText="Create"
+        okText="确定"
+        cancelText="取消"
         onCancel={onCancel}
         onOk={onCreate}
       >
@@ -143,8 +144,9 @@ class WorkOrderPage extends React.Component{
     photos.forEach((photo)=>{
       let photoCategory = this.getPhotoCategory(photo.categoryId,categories);
       photoWall.push(
-        <div>
-          <img src = {`http://www.ufengtech.xyz${photo.url.substring(5)}`} style={{marginRight: '10px',marginTop:'5px'}} key={photo.id} />
+        <div style={{margin:20}}>
+          <img src = {`http://www.ufengtech.xyz${photo.url.substring(5)}`} style={{marginRight: '10px',marginTop:'5px',marginBottom:5,maxWidth:500,maxHeight:500}} key={photo.id} />
+          <br/>
           <Cascader title={photo.id} options={getOptions(categories,photo.id)} onChange={onChange.bind(this)} placeholder={photoCategory} />
         </div>
       )
@@ -232,6 +234,8 @@ class WorkOrderPage extends React.Component{
     console.log("chats",chats);
 
     return (
+      <Layout>
+        <AppHeader/>
       <div style={{padding:'20px'}}>
         <CollectionCreateForm
           ref={this.saveFormRef}
@@ -245,6 +249,7 @@ class WorkOrderPage extends React.Component{
         </Timeline>
         <Button onClick={this.showModal.bind(this)}>新增回复</Button>
     </div>
+      </Layout>
     );
   }
 }

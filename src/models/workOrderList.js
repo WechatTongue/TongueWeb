@@ -25,12 +25,16 @@ export default {
           location.pathname
         );
         if(match){
-          const openId = location.search.substring(8);
           dispatch({
             type:'queryWorkOrderList',
-            payload:{
-              openId:openId
-            }
+          })
+        }
+        const matchRoot = pathToRegexp('/').exec(
+          location.pathname
+        );
+        if(matchRoot){
+          dispatch({
+            type:'queryWorkOrderList',
           })
         }
       })
@@ -41,7 +45,6 @@ export default {
       const data = yield call(queryWorkOrderList,{
         ...payload
       });
-      console.log("data",data);
       if(data.ok){
         yield put({
           type:'update',

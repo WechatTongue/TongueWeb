@@ -1,10 +1,7 @@
 import React from 'react';
 import { connect } from 'dva';
-import { Modal,Button } from 'antd';
-import { Form, Input } from 'antd';
-
-import { Tree } from 'antd';
-const TreeNode = Tree.TreeNode;
+import { Modal,Button,Form, Input , Layout,Icon} from 'antd';
+import AppHeader from '../components/AppHeader';
 
 const FormItem = Form.Item;
 const confirm = Modal.confirm;
@@ -16,11 +13,10 @@ function showDeleteConfirm(e) {
     deleteId:e.target.getAttribute("value")
   });
   confirm({
-    title: 'Are you sure delete '+e.target.getAttribute("name")+'?',
-    content: 'Some descriptions',
-    okText: 'Yes',
+    title: '确定删除'+e.target.getAttribute("name")+'?',
+    okText: '确定',
     okType: 'danger',
-    cancelText: 'No',
+    cancelText: '取消',
     onOk() {
       console.log(that.state);
       let { dispatch } =that.props;
@@ -45,7 +41,8 @@ const Create2Form = Form.create()(
       <Modal
         visible={visible}
         title="新增分类"
-        okText="Create"
+        okText="确定"
+        cancelText="取消"
         onCancel={onCancel}
         onOk={onCreate}
       >
@@ -71,7 +68,8 @@ const UpdateForm = Form.create()(
       <Modal
         visible={visible}
         title="修改分类"
-        okText="Create"
+        okText="确定"
+        cancelText="取消"
         onCancel={onCancel}
         onOk={onCreate}
       >
@@ -98,8 +96,10 @@ class CategoryPage extends React.Component {
     const { categories } = this.props.category;
     console.log(categories);
     return (
-      <div>
-        <Button onClick={this.showCreate1Modal}>新增分类</Button>
+      <Layout>
+        <AppHeader/>
+      <div style={{padding:30}}>
+        <Button onClick={this.showCreate1Modal}><Icon type="plus-circle-o" />新增分类</Button>
         <Create2Form
           ref={this.saveForm2Create}
           visible={this.state.Create2Modalvisible}
@@ -113,33 +113,9 @@ class CategoryPage extends React.Component {
           onCreate={this.handleUpdateModalCreate}
         />
         {this.renderCategory(categories)}
-        <Tree
-          // checkable
-          // onExpand={this.onExpand}
-          // expandedKeys={this.state.expandedKeys}
-          // autoExpandParent={this.state.autoExpandParent}
-          // onCheck={this.onCheck}
-          // checkedKeys={this.state.checkedKeys}
-          // onSelect={this.onSelect}
-          // selectedKeys={this.state.selectedKeys}
-        >
-          {this.renderTreeNodes(categories)}
-        </Tree>
       </div>
+      </Layout>
     );
-  }
-
-  renderTreeNodes = (data) => {
-    return data.map((item) => {
-      if (item.children) {
-        return (
-          <TreeNode title={item.nodeName} key={item.id} dataRef={item}>
-            {this.renderTreeNodes(item.children)}
-          </TreeNode>
-        );
-      }
-      return <TreeNode title={item.nodeName} key={item.id} dataRef={item}/>;
-    });
   }
 
   saveForm2Create = (form) =>{
@@ -236,12 +212,12 @@ class CategoryPage extends React.Component {
         <div key={data.id}>
           <p>
             {data.nodeName}
-            <Button value={data.id} name={data.nodeName} onClick={that.showCreate2Modal}>新增分类</Button>
-            <Button value={data.id} name={data.nodeName} onClick={that.showUpdateModal}>修改分类</Button>
+            <Button value={data.id} name={data.nodeName} onClick={that.showCreate2Modal} style={{margin:5}} ><Icon type="plus-circle-o" /></Button>
+            <Button value={data.id} name={data.nodeName} onClick={that.showUpdateModal} style={{margin:5}} ><Icon type="edit" /></Button>
             {((item)=>{
               if((!item.children)||(item.children===null)||(item.children.length===0)){
                 return(
-                  <Button value={data.id} name={data.nodeName} onClick={showDeleteConfirm.bind(that)}>删除分类</Button>
+                  <Button value={data.id} name={data.nodeName} onClick={showDeleteConfirm.bind(that)} style={{margin:5}} ><Icon type="delete" /></Button>
                 )
               }
             })(data)}
@@ -261,10 +237,10 @@ class CategoryPage extends React.Component {
       let child =[];
       children.forEach((data)=>{
         child.push(
-          <p key={data.id}>
+          <p key={data.id} style={{marginLeft:30}}>
             {data.nodeName}
-            <Button value={data.id} name={data.nodeName} onClick={that.showUpdateModal.bind(this)}>修改分类</Button>
-            <Button value={data.id} name={data.nodeName} onClick={showDeleteConfirm.bind(this)}>删除分类</Button>
+            <Button value={data.id} name={data.nodeName} onClick={that.showUpdateModal.bind(this)} style={{margin:5}} ><Icon type="edit" /></Button>
+            <Button value={data.id} name={data.nodeName} onClick={showDeleteConfirm.bind(this)} style={{margin:5}} ><Icon type="delete" /></Button>
           </p>
         )
       });
