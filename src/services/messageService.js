@@ -9,6 +9,14 @@ export async function addChat(params){
     })  });
 }
 
+export async function updatePhotoCategory(params){
+  return request(`${host}/photo`,{
+    method : 'PUT',
+    body : JSON.stringify({
+      ...params
+    })  });
+}
+
 export async function queryWorkOrder(params){
   return request(`${host}/message/workorder/${params.workOrderId}`);
 }
@@ -18,3 +26,5 @@ export async function queryWorkOrderList(params){
     method : 'GET',
   });
 }
+
+

@@ -6,13 +6,14 @@ import { Cascader } from 'antd';
 import {formatTime} from "../utils/format";
 const FormItem = Form.Item;
 
-function getOptions(categories){
+function getOptions(categories,photoId){
   let options = [];
   categories.forEach(function (category) {
     let children = [];
     if(category.children&&category.children!=null&&category.children.length!=0) {
       category.children.forEach(function (child) {
           children.push({
+            photoId:photoId,
             value: child.id,
             label: child.nodeName
           });
@@ -20,6 +21,7 @@ function getOptions(categories){
       );
     }
     options.push({
+      photoId:photoId,
       value:category.id,
       label:category.nodeName,
       children:children
@@ -29,7 +31,20 @@ function getOptions(categories){
   return options;
 }
 function onChange(value,options) {
-  console.log("onChange",value,options);
+  let that = this;
+  let { workOrderId } =this.props.workOrder;
+  console.log("onChange","value",value,"options",options);
+  console.log(options[options.length-1]);
+  let { dispatch } =that.props;
+  dispatch({
+    type:'workOrder/updatePhotoCategory',
+    payload:{
+      id:options[options.length-1].photoId,
+      categoryId:options[options.length-1].value,
+      workOrderId:workOrderId
+    }
+  });
+
 }
 
 const CollectionCreateForm = Form.create()(
@@ -92,6 +107,30 @@ class WorkOrderPage extends React.Component{
     });
   }
 
+  getPhotoCategory(categoryId,categories) {
+    if (categoryId == 1) {
+      return "选择分类";
+    }
+    categories.forEach((category)=>{
+      let photoCategory = category.nodeName;
+      if(category.id==categoryId){
+        return photoCategory;
+      }
+      if(category.children&&category.children!=null&&category.children.length!=0){
+        category.children.forEach((child)=>{
+          if(child.id==categoryId){
+            photoCategory+=" / "+child.nodeName;
+            return photoCategory;
+          }
+          }
+        );
+      }
+      return photoCategory;
+      }
+    );
+  }
+
+
   renderPhotos(photos,categories){
     let that = this;
 
@@ -100,17 +139,11 @@ class WorkOrderPage extends React.Component{
     }
     let photoWall =[];
     photos.forEach((photo)=>{
-      let photoCategory = "选择分类";
-      if (photo.category&&photo.category!=null){
-          photoCategory = photo.category.nodeName;
-          if(photo.category.children&&photo.category.children!=null){
-            photoCategory+=" / "+photo.category.children.nodeName;
-          }
-      }
+      let photoCategory = this.getPhotoCategory(photo.categoryId,categories);
       photoWall.push(
         <div>
           <img src = {`http://www.ufengtech.xyz${photo.url.substring(5)}`} style={{marginRight: '10px',marginTop:'5px'}} key={photo.id} />
-          <Cascader title={photo.id} options={getOptions(categories)} onChange={onChange} placeholder={photoCategory} />
+          <Cascader title={photo.id} options={getOptions(categories,photo.id)} onChange={onChange.bind(this)} placeholder={photoCategory} />
         </div>
       )
     });
@@ -194,7 +227,7 @@ class WorkOrderPage extends React.Component{
   render(){
     const { description, time, chats} =this.props.workOrder;
     const { categories } = this.props.category;
-    console.log(categories);
+    console.log("chats",chats);
 
     return (
       <div style={{padding:'20px'}}>

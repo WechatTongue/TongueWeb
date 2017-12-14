@@ -1,5 +1,5 @@
 import pathToRegexp from 'path-to-regexp';
-import {queryWorkOrder,addChat} from '../services/messageService';
+import {queryWorkOrder,addChat,updatePhotoCategory} from '../services/messageService';
 
 export default {
   namespace: 'workOrder',
@@ -67,6 +67,21 @@ export default {
     *addChat({payload},{call,put}){
       console.log("payload",payload);
       const data = yield call(addChat,{
+        ...payload
+      });
+      console.log("dta",data);
+      if(data.ok){
+        yield put({
+          type:'query',
+          payload: {
+            workOrderId: payload.workOrderId
+          }
+        })
+      }
+    },
+    *updatePhotoCategory({payload},{call,put}){
+      console.log("payload",payload);
+      const data = yield call(updatePhotoCategory,{
         ...payload
       });
       console.log("dta",data);
