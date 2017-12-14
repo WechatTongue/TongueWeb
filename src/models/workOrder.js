@@ -73,7 +73,9 @@ export default {
       if(data.ok){
         yield put({
           type:'query',
-          payload:payload.workOrderId
+          payload: {
+            workOrderId: payload.workOrderId
+          }
         })
       }
     },

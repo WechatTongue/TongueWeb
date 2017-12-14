@@ -83,7 +83,8 @@ class WorkOrderPage extends React.Component{
         payload:{
           workOrderId:workOrderId,
           description:values.content,
-          type:"diagnostic"
+          type:"diagnostic",
+          photos: []
         }
       });
       form.resetFields();
@@ -160,23 +161,6 @@ class WorkOrderPage extends React.Component{
     });
     return chats;
   }
-
-  onSubmit(){
-    console.log("submit",this.state);
-    let { dispatch } = this.props;
-    let { description,date,time} = this.state.fields;
-    let { workOrderId } = this.props.workOrder;
-    dispatch({
-      type:'workOrder/addChat',
-      payload:{
-        workOrderId:workOrderId,
-        description:description,
-        sequenceId:1,
-        time:`${date}T${time}`,
-        type:"diagnostic"
-      }
-    })
-  };
 
   handleModalCancel = () => {
     this.setState({ visible: false });

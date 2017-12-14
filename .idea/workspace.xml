@@ -2,13 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6401a066-700f-4380-955f-a9a7b154023e" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/models/category.js" afterPath="$PROJECT_DIR$/src/models/category.js" />
       <change beforePath="$PROJECT_DIR$/src/models/workOrder.js" afterPath="$PROJECT_DIR$/src/models/workOrder.js" />
-      <change beforePath="$PROJECT_DIR$/src/routes/CategoryPage.js" afterPath="$PROJECT_DIR$/src/routes/CategoryPage.js" />
       <change beforePath="$PROJECT_DIR$/src/routes/WorkOrderPage.js" afterPath="$PROJECT_DIR$/src/routes/WorkOrderPage.js" />
-      <change beforePath="$PROJECT_DIR$/src/services/categoryService.js" afterPath="$PROJECT_DIR$/src/services/categoryService.js" />
-      <change beforePath="$PROJECT_DIR$/src/services/messageService.js" afterPath="$PROJECT_DIR$/src/services/messageService.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -49,8 +44,8 @@
       <file leaf-file-name="workOrder.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/models/workOrder.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1005">
-              <caret line="67" column="28" lean-forward="false" selection-start-line="67" selection-start-column="28" selection-end-line="67" selection-end-column="28" />
+            <state relative-caret-position="424">
+              <caret line="77" column="11" lean-forward="false" selection-start-line="77" selection-start-column="11" selection-end-line="77" selection-end-column="11" />
               <folding>
                 <element signature="e#0#42#0" expanded="true" />
               </folding>
@@ -85,8 +80,8 @@
       <file leaf-file-name="WorkOrderPage.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/routes/WorkOrderPage.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-49">
-              <caret line="123" column="34" lean-forward="false" selection-start-line="123" selection-start-column="34" selection-end-line="123" selection-end-column="34" />
+            <state relative-caret-position="193">
+              <caret line="83" column="0" lean-forward="false" selection-start-line="83" selection-start-column="0" selection-end-line="86" selection-end-column="20" />
               <folding>
                 <element signature="e#14#40#0" expanded="true" />
               </folding>
@@ -117,21 +112,11 @@
       <file leaf-file-name="messageService.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/services/messageService.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="5" column="10" lean-forward="false" selection-start-line="5" selection-start-column="10" selection-end-line="5" selection-end-column="10" />
+            <state relative-caret-position="165">
+              <caret line="11" column="22" lean-forward="false" selection-start-line="11" selection-start-column="22" selection-end-line="11" selection-end-column="22" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="hostConfig.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/services/hostConfig.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="30">
-              <caret line="2" column="43" lean-forward="false" selection-start-line="2" selection-start-column="14" selection-end-line="2" selection-end-column="43" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -162,7 +147,6 @@
       <find>renderPhotos</find>
       <find>UpdateForm</find>
       <find>getOptions</find>
-      <find>title</find>
       <find>删除分类</find>
       <find>handleCreate</find>
       <find>handleCancel</find>
@@ -175,6 +159,8 @@
       <find>新增分类</find>
       <find>saveForm</find>
       <find>render()</find>
+      <find>title</find>
+      <find>addChat</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -194,8 +180,8 @@
         <option value="$PROJECT_DIR$/src/services/categoryService.js" />
         <option value="$PROJECT_DIR$/src/models/category.js" />
         <option value="$PROJECT_DIR$/src/routes/CategoryPage.js" />
-        <option value="$PROJECT_DIR$/src/routes/WorkOrderPage.js" />
         <option value="$PROJECT_DIR$/src/services/messageService.js" />
+        <option value="$PROJECT_DIR$/src/routes/WorkOrderPage.js" />
         <option value="$PROJECT_DIR$/src/models/workOrder.js" />
       </list>
     </option>
@@ -405,7 +391,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="99718000" />
+    <option name="totallyTimeSpent" value="100383000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="796" extended-state="6" />
@@ -552,14 +538,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dist/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="250">
-          <caret line="0" column="20553" lean-forward="false" selection-start-line="0" selection-start-column="20553" selection-end-line="0" selection-end-column="20553" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
@@ -654,16 +632,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/services/messageService.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="10" lean-forward="false" selection-start-line="5" selection-start-column="10" selection-end-line="5" selection-end-column="10" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/models/category.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
@@ -674,10 +642,28 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/dist/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="175">
+          <caret line="0" column="419245" lean-forward="false" selection-start-line="0" selection-start-column="419245" selection-end-line="0" selection-end-column="419245" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/services/messageService.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="22" lean-forward="false" selection-start-line="11" selection-start-column="22" selection-end-line="11" selection-end-column="22" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/models/workOrder.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1005">
-          <caret line="67" column="28" lean-forward="false" selection-start-line="67" selection-start-column="28" selection-end-line="67" selection-end-column="28" />
+        <state relative-caret-position="424">
+          <caret line="77" column="11" lean-forward="false" selection-start-line="77" selection-start-column="11" selection-end-line="77" selection-end-column="11" />
           <folding>
             <element signature="e#0#42#0" expanded="true" />
           </folding>
@@ -686,8 +672,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/routes/WorkOrderPage.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-49">
-          <caret line="123" column="34" lean-forward="false" selection-start-line="123" selection-start-column="34" selection-end-line="123" selection-end-column="34" />
+        <state relative-caret-position="193">
+          <caret line="83" column="0" lean-forward="false" selection-start-line="83" selection-start-column="0" selection-end-line="86" selection-end-column="20" />
           <folding>
             <element signature="e#14#40#0" expanded="true" />
           </folding>
