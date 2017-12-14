@@ -86,8 +86,7 @@ export default {
       });
       if(data&&data.ok){
         yield put({
-          type:"update",
-          payload:data
+          type:"query",
         })
       }
     },
@@ -97,7 +96,7 @@ export default {
       });
       if(data&&data.ok){
         yield put({
-          type:"update",
+          type:"query",
           payload:data
         })
       }
@@ -131,6 +130,7 @@ export default {
     update(state,action){
       return {categories:action.payload}
     },
+
   },
 };
 

@@ -3,7 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="6401a066-700f-4380-955f-a9a7b154023e" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/src/models/category.js" afterPath="$PROJECT_DIR$/src/models/category.js" />
+      <change beforePath="$PROJECT_DIR$/src/routes/CategoryPage.js" afterPath="$PROJECT_DIR$/src/routes/CategoryPage.js" />
       <change beforePath="$PROJECT_DIR$/src/routes/WorkOrderPage.js" afterPath="$PROJECT_DIR$/src/routes/WorkOrderPage.js" />
+      <change beforePath="$PROJECT_DIR$/src/services/categoryService.js" afterPath="$PROJECT_DIR$/src/services/categoryService.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -57,7 +60,7 @@
         <entry file="file://$PROJECT_DIR$/src/models/category.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="187">
-              <caret line="69" column="10" lean-forward="false" selection-start-line="69" selection-start-column="5" selection-end-line="69" selection-end-column="10" />
+              <caret line="93" column="41" lean-forward="false" selection-start-line="93" selection-start-column="41" selection-end-line="93" selection-end-column="41" />
               <folding>
                 <element signature="e#0#42#0" expanded="true" />
               </folding>
@@ -65,21 +68,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CategoryPage.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="CategoryPage.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/routes/CategoryPage.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-916">
-              <caret line="11" column="9" lean-forward="false" selection-start-line="11" selection-start-column="9" selection-end-line="11" selection-end-column="9" />
+            <state relative-caret-position="253">
+              <caret line="237" column="14" lean-forward="true" selection-start-line="237" selection-start-column="14" selection-end-line="237" selection-end-column="14" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="WorkOrderPage.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="WorkOrderPage.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/routes/WorkOrderPage.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="427">
-              <caret line="84" column="7" lean-forward="true" selection-start-line="84" selection-start-column="7" selection-end-line="85" selection-end-column="21" />
+            <state relative-caret-position="295">
+              <caret line="53" column="21" lean-forward="false" selection-start-line="53" selection-start-column="21" selection-end-line="53" selection-end-column="21" />
               <folding />
             </state>
           </provider>
@@ -98,8 +101,8 @@
       <file leaf-file-name="categoryService.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/services/categoryService.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="326">
-              <caret line="23" column="35" lean-forward="false" selection-start-line="23" selection-start-column="22" selection-end-line="23" selection-end-column="35" />
+            <state relative-caret-position="217">
+              <caret line="16" column="18" lean-forward="false" selection-start-line="16" selection-start-column="18" selection-end-line="16" selection-end-column="18" />
               <folding />
             </state>
           </provider>
@@ -109,7 +112,7 @@
         <entry file="file://$PROJECT_DIR$/src/services/messageService.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-2">
-              <caret line="68" column="23" lean-forward="true" selection-start-line="68" selection-start-column="23" selection-end-line="68" selection-end-column="23" />
+              <caret line="68" column="23" lean-forward="false" selection-start-line="68" selection-start-column="23" selection-end-line="68" selection-end-column="23" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
               </folding>
@@ -139,7 +142,6 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>saveFormRef</find>
-      <find>CollectionCreateForm</find>
       <find>nodeName</find>
       <find>name is requ</find>
       <find>handleUpdateModalCreate</find>
@@ -148,17 +150,20 @@
       <find>updateId</find>
       <find>add2Id</find>
       <find>handleCreate2ModalCreate</find>
-      <find>handleCancel</find>
       <find>name</find>
       <find>新增分类</find>
       <find>修改</find>
       <find>showUpdateModal</find>
       <find>renderPhotos</find>
-      <find>renderCategory</find>
       <find>UpdateForm</find>
       <find>getOptions</find>
       <find>title</find>
       <find>删除分类</find>
+      <find>handleCreate</find>
+      <find>handleCancel</find>
+      <find>showModal</find>
+      <find>CollectionCreateForm</find>
+      <find>renderCategory</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -176,11 +181,11 @@
         <option value="$PROJECT_DIR$/src/utils/format.js" />
         <option value="$PROJECT_DIR$/src/routes/WorkOrderListPage.js" />
         <option value="$PROJECT_DIR$/src/services/messageService.js" />
-        <option value="$PROJECT_DIR$/src/services/categoryService.js" />
-        <option value="$PROJECT_DIR$/src/routes/CategoryPage.js" />
-        <option value="$PROJECT_DIR$/src/models/category.js" />
         <option value="$PROJECT_DIR$/src/models/workOrder.js" />
         <option value="$PROJECT_DIR$/src/routes/WorkOrderPage.js" />
+        <option value="$PROJECT_DIR$/src/models/category.js" />
+        <option value="$PROJECT_DIR$/src/services/categoryService.js" />
+        <option value="$PROJECT_DIR$/src/routes/CategoryPage.js" />
       </list>
     </option>
   </component>
@@ -389,7 +394,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="84632000" />
+    <option name="totallyTimeSpent" value="92042000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="796" extended-state="6" />
@@ -602,41 +607,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/services/categoryService.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="326">
-          <caret line="23" column="35" lean-forward="false" selection-start-line="23" selection-start-column="22" selection-end-line="23" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/services/messageService.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-2">
-          <caret line="68" column="23" lean-forward="true" selection-start-line="68" selection-start-column="23" selection-end-line="68" selection-end-column="23" />
+          <caret line="68" column="23" lean-forward="false" selection-start-line="68" selection-start-column="23" selection-end-line="68" selection-end-column="23" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/models/category.js">
+    <entry file="file://$PROJECT_DIR$/src/router.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="69" column="10" lean-forward="false" selection-start-line="69" selection-start-column="5" selection-end-line="69" selection-end-column="10" />
-          <folding>
-            <element signature="e#0#42#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/models/workOrder.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="437">
-          <caret line="46" column="34" lean-forward="false" selection-start-line="46" selection-start-column="34" selection-end-line="46" selection-end-column="34" />
-          <folding>
-            <element signature="e#0#42#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="105">
+          <caret line="11" column="61" lean-forward="false" selection-start-line="11" selection-start-column="61" selection-end-line="11" selection-end-column="61" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -650,26 +635,46 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/routes/CategoryPage.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-916">
-          <caret line="11" column="9" lean-forward="false" selection-start-line="11" selection-start-column="9" selection-end-line="11" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/router.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="11" column="61" lean-forward="false" selection-start-line="11" selection-start-column="61" selection-end-line="11" selection-end-column="61" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/routes/WorkOrderPage.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="427">
-          <caret line="84" column="7" lean-forward="true" selection-start-line="84" selection-start-column="7" selection-end-line="85" selection-end-column="21" />
+        <state relative-caret-position="295">
+          <caret line="53" column="21" lean-forward="false" selection-start-line="53" selection-start-column="21" selection-end-line="53" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/models/workOrder.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="437">
+          <caret line="46" column="34" lean-forward="false" selection-start-line="46" selection-start-column="34" selection-end-line="46" selection-end-column="34" />
+          <folding>
+            <element signature="e#0#42#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/models/category.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="93" column="41" lean-forward="false" selection-start-line="93" selection-start-column="41" selection-end-line="93" selection-end-column="41" />
+          <folding>
+            <element signature="e#0#42#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/services/categoryService.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="217">
+          <caret line="16" column="18" lean-forward="false" selection-start-line="16" selection-start-column="18" selection-end-line="16" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/routes/CategoryPage.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="253">
+          <caret line="237" column="14" lean-forward="true" selection-start-line="237" selection-start-column="14" selection-end-line="237" selection-end-column="14" />
           <folding />
         </state>
       </provider>
